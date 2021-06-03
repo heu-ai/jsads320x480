@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        button:hover, button:active, button:focus {
+            border: 1px solid white !important;
+}
+        .active {
+          border-color: 1px solid white;
+        }
+        .selected{
+            border: 1px solid white !important;
+        }
+    </style>
+</head>
+<body>
+    <img id="output" usemap="#myMap" style="position: relative;">
+        <!--<img id="back" style="display:none; border:none;"/>-->
+        <button id="left1" class="" style="display:none !important; border:none;"></button>
+        <button id="right1" class="" style="display:none !important; border:none;"></button>
+        <button id="left2" class="" style="display:none !important; border:none;"></button>
+        <button id="right2" class="" style="display:none !important; border:none;"></button>
+        <button id="left3" class="" style="display:none !important; border:none;"></button>
+        <button id="right3" class="" style="display:none !important; border:none;"></button>
+        <button id="bigbtn" style="display:none !important; border:none;"></button>
+    </img>
+
+    <map name="myMap" id = "myMap">
+        <area id="maps"  shape="rect" href="#">
+        <area id="backbtn"  shape="rect" href="#">
+    </map>
+    <!--
+    <p>X:<span id="x"></span></p>
+    <p>Y:<span id="y"></span></p>
+    -->
+    <script src="app.js"></script>
+</body>
+</html>
