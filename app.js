@@ -31,7 +31,7 @@ function openfile(filepath){
 
 // click count but it refreshes again as per page loads
 function APICall(n){
-            console.log("Clicked Now !!!!!", n);
+            //console.log("Clicked Now !!!!!", n);
 };
 
 function imgoff(){
@@ -41,7 +41,7 @@ try{
     //console.log(img);
     }
 catch(e){
-        console.log("No img = ", e);
+        //console.log("No img = ", e);
         }
 };
 
@@ -148,7 +148,7 @@ function ImageMaplast(op) {
     var area = document.getElementById("maps");
     //area.onmouseover = function(){console.log("leftkey");};
     area.shape = "rect";
-    area.coords = "84,417,643,577";
+    area.coords = "46,215,274,281";
    // area.onmouseover = function(){console.log("left");};
     area.onclick = function(){  APICall(11); window.location.href = "https://www.google.com/maps/search/oboticario"; };
 
