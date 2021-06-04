@@ -31,7 +31,26 @@ function openfile(filepath){
 
 // click count but it refreshes again as per page loads
 function APICall(n){
-            //console.log("Clicked Now !!!!!", n);
+  // console.log(n,"no")
+  var x =JSON.stringify({ key:n})
+  fetch('https://demo.infuseads.com:8081/core/key-count/', {
+    method: 'POST',
+    body: x,
+    headers: {
+      'Content-type':  'application/json; charset=UTF-8'
+    }
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+      // alert("Asd")
+    }
+    return Promise.reject(response);
+  }).then(function (data) {
+    console.log(data);
+  }).catch(function (error) {
+    console.warn('Something went wrong.', error);
+  });
+
 };
 
 function imgoff(){
@@ -67,31 +86,31 @@ function btnfunc(op){
 
     var left1 = document.getElementById("left1");
     left1.style = "position: absolute; top: 180px; left: 33px; height: 50px; background: transparent; width: 135px; border-radius: 2%;border:1px solid transparent";
-    left1.onclick = function(){multiplebtns("left1"); APICall(2);};
+    left1.onclick = function(){multiplebtns("left1"); APICall("page2leftkey1");};
 
     var right1 = document.getElementById("right1");
     right1.style = "position: absolute; top: 180px; left: 167px; height: 50px; background: transparent; width: 135px; border-radius: 2%;border:1px solid transparent";
-    right1.onclick = function(){multiplebtns("right1");  APICall(3);};
+    right1.onclick = function(){multiplebtns("right1");  APICall("page2rightkey1");};
 
     var left2 = document.getElementById("left2");
     left2.style = "position: absolute; top: 243px; left: 33px; height: 50px; background: transparent; width: 135px; border-radius: 2%;border:1px solid transparent";
-    left2.onclick = function(){multiplebtns("left2");  APICall(4);};
+    left2.onclick = function(){multiplebtns("left2");  APICall("page2leftkey2");};
 
     var right2 = document.getElementById("right2");
     right2.style = "position: absolute; top: 243px; left: 167px; height: 50px; background: transparent; width: 135px; border-radius: 2%;border:1px solid transparent";
-    right2.onclick = function(){multiplebtns("right2");  APICall(5);};
+    right2.onclick = function(){multiplebtns("right2");  APICall("page2rightkey2");};
 
     var left3 = document.getElementById("left3");
     left3.style = "position: absolute; top: 306px; left: 33px; height: 50px; background: transparent; width: 135px; border-radius: 2%;border:1px solid transparent";
-    left3.onclick = function(){clickset = 3; multiplebtns("left3");  APICall(6);};
+    left3.onclick = function(){clickset = 3; multiplebtns("left3");  APICall("page2leftkey3");};
 
     var right3 = document.getElementById("right3");
     right3.style = "position: absolute; top: 306px; left: 167px; height: 50px; background: transparent; width: 135px; border-radius: 2%;border:1px solid transparent";
-    right3.onclick = function(){clickset = 5; multiplebtns("right3");  APICall(7);};
+    right3.onclick = function(){clickset = 5; multiplebtns("right3");  APICall("page2rightkey3");};
 
     var bigbtn = document.getElementById("bigbtn");
     bigbtn.style = "position: absolute; top: 395px; left: 52px; height: 65px; background: transparent; width: 229px; border-radius: 2%; border:1px solid transparent";
-    bigbtn.onclick = function(){btnsOff(); imgoff();  APICall(8); bigbtn = 4; if (clickset==3){op.src = imges[2]; } else if (clickset==5){op.src = imges[4];} else {op.src = imges[3];}};
+    bigbtn.onclick = function(){btnsOff(); imgoff(); bigbtn = 4; if (clickset==3){op.src = imges[2]; } else if (clickset==5){op.src = imges[4];} else {op.src = imges[3];}};
 }
 
 
@@ -111,7 +130,7 @@ function clickpattern(){
     {
         //console.log("Clicked to move 1");
         op.src = imges[1];
-        APICall(0);
+        APICall("page1");
         //console.log("Image Changed!!!...", op.src);
         btnfunc(op);
     }
@@ -123,9 +142,21 @@ function clickpattern(){
     }
     else if (op.src.search('TELA%20MALBEC.png') > -1 || op.src.search('TELA%20LILY.png') > -1 || op.src.search('TELA%20EGEO%20DOLCE.png') > -1)
     {
+      if(op.src.search('TELA%20LILY.png')>-1){
+        APICall("page4")
+      }
+      if(op.src.search('TELA%20MALBEC.png')>-1){
+        APICall("page3")
+      }
+      if(op.src.search('TELA%20EGEO%20DOLCE.png')>-1){
+        APICall("page5")
+      }
+      // if(op.src.search('TELA%20LILY.png')>-1){
+      //   APICall("lily")
+      // }
         btnsOff();
 	    imgoff();
-	    APICall(9);
+	    // APICall(9);
         op.src = imges[5];
 	    ImageMaplast(op);
         //console.log("Image Changed!!!...", op.src);
@@ -134,9 +165,10 @@ function clickpattern(){
 	else if (op.src.search('TELA%20CTA.png') > -1)
     {
 		 op.src = imges[0];
+    //  APICall("last page")
 		 btnsOff();
 		 imgoff();
-		  APICall(10);
+		  // APICall(10);
 		 // window.location.href = "https://www.google.com/maps/search/oboticario";
         //console.log("Image Changed!!!...", op.src);
     }
@@ -150,14 +182,15 @@ function ImageMaplast(op) {
     area.shape = "rect";
     area.coords = "46,215,274,281";
    // area.onmouseover = function(){console.log("left");};
-   area.onclick = function(){ APICall(11); window.open("https://www.google.com/maps/search/oboticario")};
+   area.onclick = function(){ APICall("page6link"); window.open("https://www.google.com/maps/search/oboticario")};
 
 
     var area = document.getElementById("backbtn");
+    area.style.cursor="pointer"
     area.shape = "rect";
-    area.coords = "84,602,644,761";
+    area.coords = "42,291,278,359";
    //area.onmouseover = function(){console.log("bigbtn");};
-    area.onclick = function(){ btnsOff(); imgoff();  APICall(12); op.src = imges[0]; window.location.href = ""; };
+    area.onclick = function(){ btnsOff(); imgoff();  APICall("page6back"); op.src = imges[0]; window.location.href = ""; };
  };
 
 // Finding a Position of Mouse Click
