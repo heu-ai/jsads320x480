@@ -150,18 +150,8 @@ function ImageMaplast(op) {
     area.shape = "rect";
     area.coords = "46,215,274,281";
    // area.onmouseover = function(){console.log("left");};
-    area.onclick = function(){  APICall(11); //window.location.href = "https://www.google.com/maps/search/oboticario"; };
-			      
-var iframe = document.createElement('iframe');
-    iframe.style.display = "block";
-	iframe.width="320";
-	iframe.height="480";
-	iframe.border="0";
-    iframe.src ='https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d64561208.17751462!2d-9.42203365!3d9.017755549999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1soboticario!5e0!3m2!1sen!2sin!4v1622783530911!5m2!1sen!2sin';
-    document.body.appendChild(iframe);
-	var img = document.getElementById("output");
-	img.style = "display:none !important";
-	};
+   area.onclick = function(){ APICall(11); window.open("https://www.google.com/maps/search/oboticario")};
+
 
     var area = document.getElementById("backbtn");
     area.shape = "rect";
