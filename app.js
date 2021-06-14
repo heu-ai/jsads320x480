@@ -53,6 +53,27 @@ function APICall(n){
 
 };
 
+window.onload = function(){
+  var x =JSON.stringify({ key:"impression"})
+  fetch('https://demo.infuseads.com:8081/core/key-count/', {
+    method: 'POST',
+    body: x,
+    headers: {
+      'Content-type':  'application/json; charset=UTF-8'
+    }
+  }).then(function (response) {
+    if (response.ok) {
+      return response.json();
+      // alert("Asd")
+    }
+    return Promise.reject(response);
+  }).then(function (data) {
+    console.log(data,"ddddddddddddddddddddddd");
+  }).catch(function (error) {
+    console.warn('Something went wrong.', error);
+  });
+}
+
 function imgoff(){
 try{
     var img = document.getElementById("back");
